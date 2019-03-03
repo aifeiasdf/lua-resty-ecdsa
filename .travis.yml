@@ -1,0 +1,37 @@
+dist: xenial
+sudo: false
+
+language: generic
+
+notifications:
+  email: false
+
+env:
+  global:
+    - LUAROCKS=3.0.4
+    - OPENSSL=1.1.1b
+    - OPENRESTY_BASE=1.13.6.2
+    - OPENRESTY_LATEST=1.13.6.2
+    - OPENRESTY=$OPENRESTY_BASE
+    - DOWNLOAD_CACHE=$HOME/download-cache
+    - INSTALL_CACHE=$HOME/install-cache
+    - KONG_TEST_PG_DATABASE=travis
+    - KONG_TEST_PG_USER=postgres
+    - JOBS=2
+
+
+before_install:
+  - source .ci/setup_env.sh
+
+install:
+  - make dev
+
+cache:
+  apt: true
+  pip: true
+  directories:
+    - $DOWNLOAD_CACHE
+    - $INSTALL_CACHE
+
+script:
+  - bin/resty -I ../lib/resty test_ecdsa.lua
