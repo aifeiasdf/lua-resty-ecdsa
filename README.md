@@ -7,7 +7,9 @@ Status
 ======
 
 This library is considered production ready.
+This library is considered production ready.
 
+Build status: [![Travis](https://travis-ci.org/aifeiasdf/lua-resty-ecdsa.svg?branch=master)](https://travis-ci.org/aifeiasdf/lua-resty-ecdsa)
 
 Description
 ===========
