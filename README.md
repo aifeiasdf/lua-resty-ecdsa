@@ -95,7 +95,7 @@ Synopsis
     end
 
     ngx.say(flag)
-
+```
 
 
 Methods
