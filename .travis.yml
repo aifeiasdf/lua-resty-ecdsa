@@ -23,9 +23,6 @@ env:
 before_install:
   - source .ci/setup_env.sh
 
-install:
-  - make dev
-
 cache:
   apt: true
   pip: true

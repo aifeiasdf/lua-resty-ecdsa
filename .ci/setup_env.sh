@@ -24,12 +24,6 @@ if [ ! "$(ls -A $OPENRESTY_DOWNLOAD)" ]; then
   popd
 fi
 
-if [ ! "$(ls -A $OPENRESTY_PATCHES_DOWNLOAD)" ]; then
-  pushd $DOWNLOAD_CACHE
-    curl -s -S -L https://github.com/Kong/openresty-patches/archive/master.tar.gz | tar xz
-  popd
-fi
-
 if [ ! "$(ls -A $LUAROCKS_DOWNLOAD)" ]; then
   git clone -q https://github.com/keplerproject/luarocks.git $LUAROCKS_DOWNLOAD
 fi
@@ -106,17 +100,6 @@ export PATH=$OPENSSL_INSTALL/bin:$OPENRESTY_INSTALL/nginx/sbin:$OPENRESTY_INSTAL
 export LD_LIBRARY_PATH=$OPENSSL_INSTALL/lib:$LD_LIBRARY_PATH # for openssl's CLI invoked in the test suite
 
 eval `luarocks path`
-
-
-# -------------------
-# Install Test::Nginx
-# -------------------
-if [[ "$TEST_SUITE" == "pdk" ]]; then
-  echo "Installing CPAN dependencies..."
-  chmod +x $CPAN_DOWNLOAD/cpanm
-  cpanm --notest Test::Nginx &> build.log || (cat build.log && exit 1)
-  cpanm --notest --local-lib=$TRAVIS_BUILD_DIR/perl5 local::lib && eval $(perl -I $TRAVIS_BUILD_DIR/perl5/lib/perl5/ -Mlocal::lib)
-fi
 
 nginx -V
 resty -V
