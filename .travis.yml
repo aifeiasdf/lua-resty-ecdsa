@@ -15,8 +15,6 @@ env:
     - OPENRESTY=$OPENRESTY_BASE
     - DOWNLOAD_CACHE=$HOME/download-cache
     - INSTALL_CACHE=$HOME/install-cache
-    - KONG_TEST_PG_DATABASE=travis
-    - KONG_TEST_PG_USER=postgres
     - JOBS=2
 
 
@@ -29,4 +27,4 @@ cache:
     - $INSTALL_CACHE
 
 script:
-  - resty -I lib/resty/ t/test_ecdsa.lua
+  - resty  t/test_ecdsa.lua

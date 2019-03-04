@@ -87,7 +87,7 @@ if [ ! "$(ls -A $LUAROCKS_INSTALL)" ]; then
       --prefix=$LUAROCKS_INSTALL \
       --lua-suffix=jit \
       --with-lua=$OPENRESTY_INSTALL/luajit \
-      --with-lua-include=$OPENRESTY_INSTALL/luajit/share/luajit-2.1.0-beta3/ \
+      --with-lua-include=$OPENRESTY_INSTALL/luajit/include/luajit-2.1 \
       &> build.log || (cat build.log && exit 1)
     make build &> build.log || (cat build.log && exit 1)
     make install &> build.log || (cat build.log && exit 1)
