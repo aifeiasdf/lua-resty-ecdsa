@@ -87,7 +87,7 @@ if [ ! "$(ls -A $LUAROCKS_INSTALL)" ]; then
       --prefix=$LUAROCKS_INSTALL \
       --lua-suffix=jit \
       --with-lua=$OPENRESTY_INSTALL/luajit \
-      --with-lua-include=$OPENRESTY_INSTALL/luajit/include/luajit-2.1 \
+      --with-lua-include=$OPENRESTY_INSTALL/luajit/share/luajit-2.1.0-beta3/ \
       &> build.log || (cat build.log && exit 1)
     make build &> build.log || (cat build.log && exit 1)
     make install &> build.log || (cat build.log && exit 1)
@@ -99,7 +99,7 @@ export OPENSSL_DIR=$OPENSSL_INSTALL # for LuaSec install
 export PATH=$OPENSSL_INSTALL/bin:$OPENRESTY_INSTALL/nginx/sbin:$OPENRESTY_INSTALL/bin:$LUAROCKS_INSTALL/bin:$CPAN_DOWNLOAD:$PATH
 export LD_LIBRARY_PATH=$OPENSSL_INSTALL/lib:$LD_LIBRARY_PATH # for openssl's CLI invoked in the test suite
 
-# eval `luarocks path`
+eval `luarocks path`
 luarocks install busted
 
 nginx -V
