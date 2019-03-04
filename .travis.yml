@@ -24,11 +24,9 @@ before_install:
   - source .ci/setup_env.sh
 
 cache:
-  apt: true
-  pip: true
   directories:
     - $DOWNLOAD_CACHE
     - $INSTALL_CACHE
 
 script:
-  - bin/resty -I ../lib/resty test_ecdsa.lua
+  - resty -I ../lib/resty test_ecdsa.lua
