@@ -27,4 +27,4 @@ cache:
     - $INSTALL_CACHE
 
 script:
-  - resty  t/test_ecdsa.lua
+  - resty  ./t/test_ecdsa.lua
